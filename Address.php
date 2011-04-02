@@ -42,7 +42,7 @@ class Address {
 		}
 	}
 	
-	public function validate_postcode($postcode)
+	public function valid_postcode($postcode)
 	{
 		$postcode = trim(strtoupper(str_replace(' ', '', $postcode)));
 		
@@ -63,12 +63,6 @@ class Address {
 	{
 		//Make sure postcode formatted correctly
 		$postcode = trim(strtoupper(str_replace(' ', '', $postcode)));
-		
-		//Check postcode is valid
-		if(!$this->validate_postcode($postcode))
-		{
-			return false;
-		}
 		
 		//Build URL to Google webservice
 		$url = $this->_geocode_url.'address='.$postcode;
