@@ -2,7 +2,7 @@
 
 class Address {
 	
-	protected $using_curl = true;
+	public $using_curl = true;
 	
 	public function __construct()
 	{
