@@ -2,6 +2,8 @@
 
 class Address {
 	
+	private $_ci;
+	
 	public $using_curl = false;
 	
 	public function __construct()
@@ -11,11 +13,13 @@ class Address {
 		//Using Curl library
 		//$this->load
 		
+		$this->_ci =& get_instance();
+		
 		if(extension_loaded('curl') && file_exists(APPPATH.'libraries/Curl.php'))
 		{
-			$this->load->library('curl');
+			$this->_ci->load->library('curl');
 			
-			if(method_exists($this->curl, 'simple_get'))
+			if(method_exists($this->_ci->curl, 'simple_get'))
 			{
 				$this->using_curl = true;
 			}
