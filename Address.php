@@ -1,5 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Address Class
+ *
+ * Various functions for dealing with and getting address. Only tested with UK addresses. Makes
+ * use of Phil Sturgeons Curl library if cURL is available and enabled. See https://github.com/philsturgeon/codeigniter-curl.
+ *
+ * @package   Showcase
+ * @author    Createanet
+ * @copyright 2011, Createanet
+ */
 class Address {
 	
 	public $use_curl       = false; //Use cURL (if installed) instead of file_get_contents
@@ -8,6 +18,11 @@ class Address {
 	private $_ci; //Codeigniter instance
 	private $_geocode_url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&';
 	
+	/**
+	 * Address Class Constructor
+	 *
+	 * Checks cURL is installed and Curl library is available.
+	 */
 	public function __construct()
 	{
 		//Get CI instance
@@ -30,6 +45,12 @@ class Address {
 		}
 	}
 	
+	/**
+	 * Retrieves the contents at a URL. Defaults to using file_get_contents, unless $use_curl is true.
+	 *
+	 * @param  string $url URL to get contents of
+	 * @return string URL contents
+	 */
 	private function _get($url)
 	{
 		if($this->use_curl && $this->curl_available)
@@ -42,7 +63,12 @@ class Address {
 		}
 	}
 	
-	//Validates a UK postcode
+	/**
+	 * Check whether a postcode is a valid UK postcode.
+	 *
+	 * @param string $postcode UK postcode
+	 * @return bool
+	 */
 	public function valid_postcode($postcode)
 	{
 		$postcode = trim(strtoupper(str_replace(' ', '', $postcode)));
@@ -59,6 +85,13 @@ class Address {
 		}
 	}
 	
+	/**
+	 * Retrieve address from postcode.
+	 *
+	 * @param  string $postcode Postcode of address to find information for
+	 * @param  int    $number   Optional. House number to prepend.
+	 * @return array
+	 */
 	public function from_postcode($postcode, $number = false)
 	{
 		//Make sure postcode formatted correctly
@@ -146,6 +179,7 @@ class Address {
 		return $address;
 	}
 }
+
 // END Address Class
 
 /* End of file Address.php */
