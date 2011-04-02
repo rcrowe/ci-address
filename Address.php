@@ -42,6 +42,7 @@ class Address {
 		}
 	}
 	
+	//Validates a UK postcode
 	public function valid_postcode($postcode)
 	{
 		$postcode = trim(strtoupper(str_replace(' ', '', $postcode)));
@@ -58,7 +59,6 @@ class Address {
 		}
 	}
 	
-	//Get details on a UK postcode
 	public function from_postcode($postcode, $number = false)
 	{
 		//Make sure postcode formatted correctly
