@@ -32,7 +32,7 @@ class Address {
 	
 	private function _get($url)
 	{
-		if($use_curl && $curl_available)
+		if($this->use_curl && $this->curl_available)
 		{
 			return $this->_ci->curl->simple_get($url);
 		}
