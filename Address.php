@@ -97,6 +97,18 @@ class Address {
 	 */
 	public function driving_distance($origin, $destination)
 	{
+		//Convert array to string
+		if(is_array($origin))
+		{
+			$origin = implode(',', $origin);
+		}
+		
+		if(is_array($destination))
+		{
+			$destination = implode(',', $destination);
+		}
+		
+		//Ready string for URL
 		$origin      = urlencode($origin);
 		$destination = urlencode($destination);
 		
