@@ -16,7 +16,8 @@ class Address {
 	public $curl_available = false; //Is cURL and library available
 	
 	private $_ci; //Codeigniter instance
-	private $_geocode_url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&';
+	private $_geocode_url    = 'http://maps.googleapis.com/maps/api/geocode/json?sensor=false&';
+	private $_directions_url = 'http://maps.googleapis.com/maps/api/directions/json?sensor=false&';
 	
 	/**
 	 * Address Class Constructor
@@ -83,6 +84,28 @@ class Address {
 		{
 			return false;
 		}
+	}
+	
+	/**
+	 * Retrieve the distance and driving time between two addresses. Useful for things like store finder.
+	 *
+	 * @param string|array $origin      Full address of where you are starting from
+	 * @param string|array $destination Full address of where you are ending
+	 * @return array Distance in meters and driving time in seconds
+	 */
+	public function driving_distance($origin, $destination)
+	{
+		//Build URL to directions API
+		$url = $this->_directions_url.'origin='.$origin.'&destination='.$destination;
+		
+		//Get data
+		$data = $this->_get($url);
+		$data = json_decode($data);
+		
+		$time     = $data->duration->value;
+		$distance = $data->distance->value;
+		
+		return array($distance, $time);
 	}
 	
 	/**
