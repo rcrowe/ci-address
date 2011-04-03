@@ -6,6 +6,8 @@
  * Various functions for dealing with and getting address. Only tested with UK addresses. Makes
  * use of Phil Sturgeons Curl library if cURL is available and enabled. See https://github.com/philsturgeon/codeigniter-curl.
  *
+ * NOTE: Address makes use of the Google Maps API, make sure you abide-by the ToS.
+ *
  * @package   Showcase
  * @author    Createanet
  * @copyright 2011, Createanet
