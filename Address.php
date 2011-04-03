@@ -95,6 +95,9 @@ class Address {
 	 */
 	public function driving_distance($origin, $destination)
 	{
+		$origin      = urlencode($origin);
+		$destination = urlencode($destination);
+		
 		//Build URL to directions API
 		$url = $this->_directions_url.'origin='.$origin.'&destination='.$destination;
 		
@@ -102,10 +105,15 @@ class Address {
 		$data = $this->_get($url);
 		$data = json_decode($data);
 		
-		$time     = $data->duration->value;
-		$distance = $data->distance->value;
+		//Get distance and time from result
+		$time     = $data->routes[0]->legs[0]->duration->value;
+		$distance = $data->routes[0]->legs[0]->distance->value;
 		
-		return array($distance, $time);
+		//Return details
+		return array(
+				'meters'  => $distance, 
+				'seconds' => $time
+			   );
 	}
 	
 	/**
