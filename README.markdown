@@ -26,3 +26,9 @@ Address details from postcode
 -----------------------------
 
 	$address = $this->address->from_postcode('bh20 7lu', 10);
+
+
+Distance/Time between two addresses
+-----------------------------------
+
+	list($meters, $seconds) = $this->address->driving_distance('address 1', 'address 2');
