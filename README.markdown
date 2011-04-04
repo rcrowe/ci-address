@@ -25,7 +25,7 @@ Validate postcode
 Address details from postcode
 -----------------------------
 
-	$address = $this->address->from_postcode('bh20 7lu', 10);
+	$address = $this->address->from_postcode('bh20 ###', 14);
 
 
 Distance/Time between two addresses
