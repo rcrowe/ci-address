@@ -8,9 +8,7 @@
  *
  * NOTE: Address makes use of the Google Maps API, make sure you abide-by the ToS.
  *
- * @package   Showcase
- * @author    Createanet
- * @copyright 2011, Createanet
+ * @copyright 2011, Rob Crowe
  */
 class Address {
 	
